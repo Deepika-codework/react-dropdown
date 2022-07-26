@@ -16,8 +16,6 @@ const showCheckboxes=() =>{
 }
 
 const evaluateCheckBox=(val)=>{
-console.log(selVal.includes(val));
-  //return true;
   return selVal.includes(val)
 }
 
