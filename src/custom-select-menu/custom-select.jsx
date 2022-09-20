@@ -23,16 +23,16 @@ const CustomSelect = ({option,id='value',label='label'}) => {
 
  const dropdownWithCheckBox = useMemo(()=>{
     return (option.map(data => (
-      <div key={data.value} >
+      <div key={data[id]} >
         <input type="checkbox"
-          checked={evaluateCheckBox(data.label)}
+          checked={evaluateCheckBox(data[label])}
           onChange={(e) => {
-            e.target.checked ? selVal.push(data.label) : selVal.pop(data.label);
+            e.target.checked ? selVal.push(data[label]) : selVal.pop(data[label]);
             setSelVal([...selVal])
           }
           }
         />
-        <span>{data.label}</span></div>)
+        <span>{data[label]}</span></div>)
     ))
   },[selVal])
 
@@ -48,11 +48,11 @@ const CustomSelect = ({option,id='value',label='label'}) => {
           </select>
           <div className="overSelect"></div>
         </div>
-        <div id="checkboxes" style={{ display: `${expanded ? 'block' : 'none'}`, maxHeight: '50vh', 'overflow':'scroll' }}>
+        <div id="checkboxes" style={{ display: `${expanded ? 'block' : 'none'}`, maxHeight: '50vh', 'overflowY':'scroll' }}>
         <input type="checkbox"
                 checked={selVal.length===Object.keys(option).length}
                 onChange={(e) => {
-                 e.target.checked ? setSelVal([...option.map(data=>data.label)]): setSelVal([])
+                 e.target.checked ? setSelVal([...option.map(data=>data[label])]): setSelVal([])
                 }
                 }
               /><span>Select All</span>
